@@ -1,12 +1,15 @@
 const dotenv = require("dotenv");
 const express = require("express");
 
+//* Routers Imports
+const dogapi = require("./routers/routers_dog_api");
+
 //* Dotenv
 dotenv.config();
 
 //* App
 const app = express();
-const PORT = 8081; //TODO make as env variable
+const PORT = 5505; //TODO make as env variable
 
 //TODO Connect to DB
 
@@ -20,9 +23,11 @@ app.use(express.static("public"));
 //* View Engine
 
 //* Routes
-app.use(["/", "home"], (req, res) => {
+app.get(["/", "/home"], (req, res) => {
   res.status(200).send("Home");
 });
+
+app.use("/dog", dogapi);
 
 //TODO error 404
 
