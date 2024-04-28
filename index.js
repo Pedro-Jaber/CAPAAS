@@ -1,6 +1,8 @@
 const dotenv = require("dotenv");
 const express = require("express");
 
+const { connectDB } = require("./model/dataBase");
+
 //* Routers Imports
 const dogapi = require("./routers/routers_dog_api");
 
@@ -11,7 +13,8 @@ dotenv.config();
 const app = express();
 const PORT = 5505; //TODO make as env variable
 
-//TODO Connect to DB
+//* Connect to DB
+connectDB();
 
 //* Middleware
 app.use(express.urlencoded({ extended: true }));
