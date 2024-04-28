@@ -35,7 +35,7 @@ app.use("/dog", dogapi);
 //TODO error 404
 
 //* App Listen
-
+//TODO connect to database before start
 app.listen(PORT, () => {
   console.log("Server:\x1b[92m Online \x1b[0m");
   console.log("Port: " + PORT);
