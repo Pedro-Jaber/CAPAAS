@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start-dev": "nodemon index.js",
+    "start": "node index.js",
     "test": ""
   },
   "author": "",
@@ -11,7 +13,9 @@
   "dependencies": {
     "connect-mongo": "^5.1.0",
     "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "express-ejs-layouts": "^2.5.1",
     "mongoose": "^8.3.0"
   }
 }
