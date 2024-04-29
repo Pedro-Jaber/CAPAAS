@@ -1,5 +1,7 @@
-const dotenv = require("dotenv");
+//* Dependencies
 const express = require("express");
+const expressLayouts = require("express-ejs-layouts");
+const dotenv = require("dotenv");
 
 const { connectDB } = require("./model/dataBase");
 
@@ -24,6 +26,9 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //* View Engine
+app.use(expressLayouts);
+app.set("view engine", "ejs");
+app.set("layout", "layouts/main");
 
 //* Routes
 app.get(["/", "/home"], (req, res) => {
