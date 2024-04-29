@@ -4,7 +4,7 @@ const express = require("express");
 const { connectDB } = require("./model/dataBase");
 
 //* Routers Imports
-const dogapi = require("./routers/routers_dog_api");
+const capybaraAPI = require("./routers/routers_capybara_api");
 
 //* Dotenv
 dotenv.config();
@@ -30,7 +30,7 @@ app.get(["/", "/home"], (req, res) => {
   res.status(200).send("Home");
 });
 
-app.use("/dog", dogapi);
+app.use("/capybara", capybaraAPI);
 
 //TODO error 404
 

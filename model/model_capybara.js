@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const TagSchema = new Schema({ tag: String }, { _id: false });
-const DogShema = new Schema(
+const CapybaraShema = new Schema(
   {
     // Image ID as a 24-character hexadecimal string
     mimetype: String, // Mimetype: image/exemple
@@ -17,4 +17,4 @@ const DogShema = new Schema(
 //TODO Get image mimetype before saving
 //TODO Get image size before saving
 
-module.exports = mongoose.model("Dog", DogShema);
+module.exports = mongoose.model("Capybara", CapybaraShema);
