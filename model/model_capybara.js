@@ -6,15 +6,14 @@ const CapybaraShema = new Schema(
   {
     // Image ID as a 24-character hexadecimal string
     mimetype: String, // Mimetype: image/exemple
-    size: Number, // bytes
-    tags: [TagSchema],
+    size: Number, // size in bytes
+    blob: Buffer, // Image in blob
+    tags: [String],
   },
   {
     timestamps: true,
+    collection: "capybaras",
   }
 );
-
-//TODO Get image mimetype before saving
-//TODO Get image size before saving
 
 module.exports = mongoose.model("Capybara", CapybaraShema);
