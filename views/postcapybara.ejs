@@ -1,5 +1,9 @@
 <div class="mt-5">
-  <form action="/capybara/post-capybara" method="post">
+  <form
+    action="/capybara/post-capybara"
+    enctype="multipart/form-data"
+    method="post"
+  >
     <div class="mb-3">
       <label for="tags" class="form-label">Tags</label>
       <input
@@ -7,13 +11,15 @@
         class="form-control"
         id="tags"
         aria-describedby="tags-list"
+        name="tags"
       />
     </div>
 
     <div class="mb-3">
       <label for="image" class="form-label">Image</label>
-      <input type="file" class="form-control" id="image" />
+      <input type="file" class="form-control" id="image" name="image" />
     </div>
+
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
