@@ -19,7 +19,7 @@ module.exports.postCapybara = async (req, res) => {
   const mimetype = image.mimetype; // Get image mimetype to store in database
   const size = image.size; // Get image size to store in database
   const blob = image.buffer; // Get Blob to store in database
-  const tags = tags_string.trim().toLowerCase().split(" ");
+  const tags = tags_string.trim().toLowerCase().split(" "); // Extract all the tags from the String
 
   console.log(image);
 
