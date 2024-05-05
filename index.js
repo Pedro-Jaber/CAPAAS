@@ -32,7 +32,9 @@ app.set("layout", "layouts/main");
 
 //* Routes
 app.get(["/", "/home"], (req, res) => {
-  res.status(200).send("Home");
+  res
+    .status(200)
+    .send("Home <a href='/capybara/post-capybara'>/capybara/post-capybara</a>");
 });
 
 app.use("/capybara", capybaraAPI);
