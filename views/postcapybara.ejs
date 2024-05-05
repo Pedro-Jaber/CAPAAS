@@ -24,14 +24,13 @@
   </form>
 </div>
 
-<div class="mt-5">
+<div class="my-5">
   <div class="row gy-3 gx-3">
     <% data.forEach(image => { %>
 
     <div class="col-4 text-center">
       <img src="data: <%= image.mimetype %>;base64, <%=
-      image.blob.toString("base64") %>" style="max-width: 300px; max-height:
-      300px;">
+      image.blob.toString("base64") %>" class="images-cards">
     </div>
 
     <% }) %>
