@@ -9,9 +9,10 @@ module.exports.getRandonCapybara = async (req, res) => {
 };
 
 module.exports.getToPostCapybara = async (req, res) => {
-  const data = await Capybara.aggregate([{ $sort: { createdAt: 1 } }])
-    .limit(20)
+  const data = await Capybara.aggregate([{ $sort: { createdAt: -1 } }])
+    .limit(50)
     .exec();
+
   // console.log(data);
 
   res.status(200).render("postcapybara", { data });
