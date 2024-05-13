@@ -1,4 +1,3 @@
-const { json } = require("express");
 const Capybara = require("../model/model_capybara");
 
 module.exports.getRandonCapybara = async (req, res) => {
