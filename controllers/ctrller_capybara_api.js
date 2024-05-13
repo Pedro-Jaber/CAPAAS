@@ -47,6 +47,58 @@ module.exports.getRandonCapybara = async (req, res) => {
   }
 };
 
+module.exports.getImageFromId = async (req, res) => {
+  const _id = req.params.id;
+
+  try {
+    const image = await Capybara.findById(_id).exec();
+
+    // HTML Response
+    if (req.query.html == "true") {
+      // Image Not Found
+      if (image == null) {
+        res.status(404).send("404 Image Not Found");
+      } else {
+        res.send(
+          ` <img src="data: ${image.mimetype};base64,
+          ${image.blob.toString(
+            "base64"
+          )}" style="max-width: 90vw; max-height: 90vh;"> `
+        );
+      }
+    }
+    // Json response
+    else if (req.query.json == "true") {
+      // Image Not Found
+      if (image == null) {
+        res.status(404).json({ statusCode: "404", message: "Image Not Found" });
+      } else {
+        let imageJson = {
+          tags: image.tags,
+          mimetype: image.mimetype,
+          size: image.size,
+          createdAt: image.createdAt,
+          updatedAt: image.updatedAt,
+          _id: image._id.toString(),
+        };
+        res.status(200).json(imageJson);
+      }
+    }
+    // Pure Image response
+    else {
+      // Image Not Found
+      if (image == null) {
+        res.status(404).send("404 Image Not Found");
+      } else {
+        res.status(501).send("501 Not Implemented");
+      }
+    }
+  } catch (error) {
+    console.error("Error retrieving image by id:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
 module.exports.getToPostCapybara = async (req, res) => {
   const data = await Capybara.aggregate([{ $sort: { createdAt: -1 } }])
     .limit(20)
