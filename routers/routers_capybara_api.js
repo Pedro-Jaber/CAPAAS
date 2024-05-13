@@ -13,10 +13,10 @@ const upload = multer({
 });
 
 router.route("").get(ctrllerCapybara.getRandonCapybara);
-router.route("/:id").get(ctrllerCapybara.getImageFromId);
 router
   .route("/post-capybara")
   .get(ctrllerCapybara.getToPostCapybara)
   .post(upload.single("image"), ctrllerCapybara.postCapybara);
+router.route("/:id").get(ctrllerCapybara.getImageFromId);
 
 module.exports = router;
