@@ -1,16 +1,55 @@
+const { json } = require("express");
 const Capybara = require("../model/model_capybara");
 
 module.exports.getRandonCapybara = async (req, res) => {
   // /capybara
-  res.status(200).send("RandomCapybara");
+  try {
+    const data = await Capybara.aggregate([{ $sample: { size: 1 } }]).exec();
+    const image = data[0];
 
-  // /capybara?json=true
-  // /capybara?html=true
+    console.log(image._id.toString());
+    console.log(image.mimetype);
+    console.log(image.size);
+    console.log(image.tags);
+
+    // HTML Response --> /capybara?json=true
+    if (req.query.html == "true") {
+      res.send(
+        ` <img src="data: ${image.mimetype};base64,
+          ${image.blob.toString(
+            "base64"
+          )}" style="max-width: 90vw; max-height: 90vh;"> `
+      );
+    }
+    // Json response --> /capybara?html=true
+    else if (req.query.json == "true") {
+      let imageJson = {
+        tags: image.tags,
+        mimetype: image.mimetype,
+        size: image.size,
+        createdAt: image.createdAt,
+        updatedAt: image.updatedAt,
+        _id: image._id.toString(),
+      };
+      res.status(200).json(imageJson);
+    }
+    // Pure Image response
+    else {
+      // res.status(200).send("RandomCapybara");
+      // res.type(image.mimetype).end(Buffer.from(image.blob.toString(), "base64"));
+      // res.status(200).type(image.mimetype).send(image.blob.toString());
+
+      res.status(501).send("501 Not Implemented");
+    }
+  } catch (error) {
+    console.error("Error retrieving random image:", error);
+    res.status(500).send("Internal Server Error");
+  }
 };
 
 module.exports.getToPostCapybara = async (req, res) => {
   const data = await Capybara.aggregate([{ $sort: { createdAt: -1 } }])
-    .limit(50)
+    .limit(20)
     .exec();
 
   // console.log(data);
