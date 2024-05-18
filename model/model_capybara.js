@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const TagSchema = new Schema({ tag: String }, { _id: false });
-const CapybaraShema = new Schema(
+const CapybaraSchema = new Schema(
   {
     // Image ID as a 24-character hexadecimal string
     mimetype: String, // Mimetype: image/exemple
@@ -16,4 +16,4 @@ const CapybaraShema = new Schema(
   }
 );
 
-module.exports = mongoose.model("Capybara", CapybaraShema);
+module.exports = mongoose.model("Capybara", CapybaraSchema);
