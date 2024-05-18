@@ -100,7 +100,7 @@ module.exports.getImageFromId = async (req, res) => {
 
 module.exports.getToPostCapybara = async (req, res) => {
   const data = await Capybara.aggregate([{ $sort: { createdAt: -1 } }])
-    .limit(20)
+    .limit(24)
     .exec();
 
   // console.log(data);
