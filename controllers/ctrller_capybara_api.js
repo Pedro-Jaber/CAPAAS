@@ -34,11 +34,14 @@ module.exports.getRandonCapybara = async (req, res) => {
     }
     // Pure Image response
     else {
-      // res.status(200).send("RandomCapybara");
-      // res.type(image.mimetype).end(Buffer.from(image.blob.toString(), "base64"));
-      // res.status(200).type(image.mimetype).send(image.blob.toString());
+      // res.type(image.mimetype).send(image.blob);
 
-      res.status(501).send("501 Not Implemented");
+      // res.type(image.mimetype).end(Buffer.from(image.blob.toString(), "base64"));
+      // res.type(image.mimetype).end(image.blob.toString("base64"), "binary");
+      // res.status(200).type(image.mimetype).send(image.blob.toString("base64"));
+      // res.status(501).send("501 Not Implemented");
+      res.set("Content-Type", image.mimetype);
+      res.send(image.blob.toString("binary"));
     }
   } catch (error) {
     console.error("Error retrieving random image:", error);
@@ -145,7 +148,6 @@ module.exports.postCapybara = async (req, res) => {
       tags,
     }).then(() => {
       //* Status 201 Created
-      // res.status(201).redirect("/home");
       res.status(201).redirect("/capybara/post-capybara");
     });
   } catch (error) {
