@@ -29,20 +29,22 @@
     <% data.forEach(image => { %>
     <div class="col-4">
       <div class="card">
-        <img src="data: <%= image.mimetype %>;base64, <%=
-        image.blob.toString("base64") %>" class="images-cards">
+        <div class="card-image">
+          <img src="data: <%= image.mimetype %>;base64, <%=
+          image.blob.toString("base64") %>" class="images-cards">
+        </div>
 
         <div class="card-body mt-auto mb-2">
-          <div class="d-flex" id="id">
-            <span class="ms-auto me-1"><%= image._id %></span>
-          </div>
-
           <div>
             <h5 class="card-title">Tags</h5>
             <p class="card-text">
               <%= image.tags.toString().replaceAll(",",", ") %>
             </p>
           </div>
+        </div>
+
+        <div class="d-flex" id="id">
+          <span class="mx-auto"><%= image._id %></span>
         </div>
 
         <div class="card-footer">
