@@ -5,7 +5,7 @@ const ctrllerCapybara = require("../controllers/ctrller_capybara_api");
 const router = Router();
 
 const storage = multer.memoryStorage(); // Set to save image in RAM memory
-const limits = { fileSize: 1024 * 1024 * 4 }; // file size in bytes // 1MB
+const limits = { fileSize: 1024 * 1024 * 4 }; // file size in bytes // 4MB
 const upload = multer({
   dest: "./public/images/temp",
   storage: storage,
