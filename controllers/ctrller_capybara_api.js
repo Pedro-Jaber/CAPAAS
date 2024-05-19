@@ -5,11 +5,12 @@ module.exports.getRandonCapybara = async (req, res) => {
   try {
     const data = await Capybara.aggregate([{ $sample: { size: 1 } }]).exec();
     const image = data[0];
+    image.blob = Buffer.from(image.blob.toString("base64"), "base64");
 
-    console.log(image._id.toString());
-    console.log(image.mimetype);
-    console.log(image.size);
-    console.log(image.tags);
+    // Image Info
+    console.log("\n= Image Info ==========================================");
+    console.log(image);
+    console.log("=======================================================\n");
 
     // HTML Response --> /capybara?json=true
     if (req.query.html == "true") {
@@ -34,14 +35,7 @@ module.exports.getRandonCapybara = async (req, res) => {
     }
     // Pure Image response --> /capybara
     else {
-      // res.type(image.mimetype).send(image.blob);
-
-      // res.type(image.mimetype).end(Buffer.from(image.blob.toString(), "base64"));
-      // res.type(image.mimetype).end(image.blob.toString("base64"), "binary");
-      // res.status(200).type(image.mimetype).send(image.blob.toString("base64"));
-      // res.status(501).send("501 Not Implemented");
-      res.set("Content-Type", image.mimetype);
-      res.send(image.blob.toString("binary"));
+      res.type(image.mimetype).send(image.blob);
     }
   } catch (error) {
     console.error("Error retrieving random image:", error);
@@ -156,6 +150,6 @@ module.exports.postCapybara = async (req, res) => {
     res.status(500).send("500 Internal Server Error");
   }
 
-  //* Status 400 Bad Request //error in information
+  //TODO Status 400 Bad Request //error in information
   //res.status(400).send("400 Bad Request");
 };
