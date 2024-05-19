@@ -32,7 +32,7 @@ module.exports.getRandonCapybara = async (req, res) => {
       };
       res.status(200).json(imageJson);
     }
-    // Pure Image response
+    // Pure Image response --> /capybara
     else {
       // res.type(image.mimetype).send(image.blob);
 
