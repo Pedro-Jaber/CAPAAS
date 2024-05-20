@@ -38,7 +38,7 @@ app.get(["/", "/home"], async (req, res) => {
   // console.log(data);
   // console.log(capcount);
 
-  res.status(200).render("Home", { data, capcount });
+  res.status(200).render("home", { data, capcount });
 });
 
 app.use("/capybara", capybaraAPI);
