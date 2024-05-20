@@ -86,7 +86,7 @@ module.exports.getImageFromId = async (req, res) => {
       if (image == null) {
         res.status(404).send("404 Image Not Found");
       } else {
-        res.status(501).send("501 Not Implemented");
+        res.type(image.mimetype).send(image.blob);
       }
     }
   } catch (error) {
