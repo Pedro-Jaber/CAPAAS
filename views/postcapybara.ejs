@@ -1,60 +1,66 @@
-<div class="mt-5">
-  <form
-    action="/capybara/post-capybara"
-    enctype="multipart/form-data"
-    method="post"
-  >
-    <div class="mb-3">
-      <label for="tags" class="form-label">Tags</label>
-      <input
-        type="text"
-        class="form-control"
-        id="tags"
-        aria-describedby="tags-list"
-        name="tags"
-      />
-    </div>
-
-    <div class="mb-3">
-      <label for="image" class="form-label">Image</label>
-      <input type="file" class="form-control" id="image" name="image" />
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div>
-
-<div class="my-5">
-  <div class="row gy-3 gx-3">
-    <% data.forEach(image => { %>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="card">
-        <div class="card-image">
-          <img src="data: <%= image.mimetype %>;base64, <%=
-          image.blob.toString("base64") %>" class="images-cards">
-        </div>
-
-        <div class="card-body mt-auto mb-2">
-          <div>
-            <h5 class="card-title">Tags</h5>
-            <p class="card-text">
-              <%= image.tags.toString().replaceAll(",",", ") %>
-            </p>
-          </div>
-        </div>
-
-        <div class="d-flex" id="id">
-          <span class="mx-auto"><%= image._id %></span>
-        </div>
-
-        <div class="card-footer">
-          <span>CreatedAt: <%= image.createdAt.toDateString() %></span>
-          <br />
-          <span>UpdatedAt: <%= image.updatedAt.toDateString() %></span>
-        </div>
+<section class="section-padding">
+  <div class="mt-5">
+    <form
+      action="/capybara/post-capybara"
+      enctype="multipart/form-data"
+      method="post"
+    >
+      <div class="mb-3">
+        <label for="tags" class="form-label">Tags</label>
+        <input
+          type="text"
+          class="form-control"
+          id="tags"
+          aria-describedby="tags-list"
+          name="tags"
+        />
       </div>
-    </div>
 
-    <% }) %>
+      <div class="mb-3">
+        <label for="image" class="form-label">Image</label>
+        <input type="file" class="form-control" id="image" name="image" />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </div>
-</div>
+</section>
+
+<section class="section-padding">
+  <div class="my-5">
+    <div class="row gy-3 gx-3">
+      <% data.forEach(image => { %>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <a class="no-link-style" href="<%= image._id %>">
+          <div class="card">
+            <div class="card-image">
+              <img src="data: <%= image.mimetype %>;base64, <%=
+              image.blob.toString("base64") %>" class="images-cards">
+            </div>
+
+            <div class="card-body mt-auto mb-2">
+              <div>
+                <h5 class="card-title">Tags</h5>
+                <p class="card-text">
+                  <%= image.tags.toString().replaceAll(",",", ") %>
+                </p>
+              </div>
+            </div>
+
+            <div class="d-flex" id="id">
+              <span class="mx-auto"><%= image._id %></span>
+            </div>
+
+            <div class="card-footer">
+              <span>CreatedAt: <%= image.createdAt.toDateString() %></span>
+              <br />
+              <span>UpdatedAt: <%= image.updatedAt.toDateString() %></span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <% }) %>
+    </div>
+  </div>
+</section>
