@@ -1,0 +1,53 @@
+<section class="CAPAAS-banner-section py-5">
+  <div class="section-padding">
+    <div class="home-banner p-3">
+      <h1>CAPAAS</h1>
+      <h3>Capybara as a service</h3>
+      <p>
+        Is a REST API to spread peace and love thanks to capybaras.
+        <br />
+        Have <strong><%= capcount %></strong> capybaras now
+      </p>
+      <a role="button" class="btn btn-primary" href="/capybara">
+        GIVE ME ONE
+      </a>
+      <a
+        role="button"
+        class="btn btn-outline-secondary"
+        href="/capybara/post-capybara"
+      >
+        POST A CAPYBARA
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section-padding my-5">
+  <h2>SAMPLES</h2>
+  <div>
+    <div class="row gy-3 gx-3">
+      <% data.forEach(image => { %>
+      <div class="col-6 col-md-4 col-lg-3 card-home">
+        <a class="no-link-style" href="capybara/<%= image._id %>">
+          <div class="card">
+            <div class="card-image">
+              <img src="data: <%= image.mimetype %>;base64, <%=
+              image.blob.toString("base64") %>" class="images-cards">
+            </div>
+
+            <div class="card-body mt-auto mb-2">
+              <div>
+                <h5 class="card-title">Tags</h5>
+                <p class="card-text">
+                  <%= image.tags.toString().replaceAll(",",", ") %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <% }) %>
+    </div>
+  </div>
+</section>

@@ -31,10 +31,14 @@ app.set("view engine", "ejs");
 app.set("layout", "layouts/main");
 
 //* Routes
-app.get(["/", "/home"], (req, res) => {
-  res
-    .status(200)
-    .send("Home <a href='/capybara/post-capybara'>/capybara/post-capybara</a>");
+const Capybara = require("./model/model_capybara");
+app.get(["/", "/home"], async (req, res) => {
+  const data = await Capybara.aggregate([{ $sample: { size: 4 } }]).exec();
+  const capcount = await Capybara.countDocuments();
+  // console.log(data);
+  // console.log(capcount);
+
+  res.status(200).render("Home", { data, capcount });
 });
 
 app.use("/capybara", capybaraAPI);
