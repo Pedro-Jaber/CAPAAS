@@ -122,6 +122,11 @@ label {
   }
 }
 
+.card-footer {
+  border-top-width: 0px;
+  background-color: rgba(14, 14, 16, 0.25);
+}
+
 .card-footer span,
 #id span {
   color: #474752;
