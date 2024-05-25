@@ -31,7 +31,7 @@
         <a class="no-link-style" href="capybara/<%= image._id %>">
           <div class="card">
             <div class="card-image">
-              <img src="data: <%= image.mimetype %>;base64, <%=
+              <img loading="lazy" src="data: <%= image.mimetype %>;base64, <%=
               image.blob.toString("base64") %>" class="images-cards">
             </div>
 
