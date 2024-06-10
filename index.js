@@ -1,6 +1,7 @@
 //* Dependencies
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
+const cors = require("cors");
 const dotenv = require("dotenv");
 
 const { connectDB } = require("./model/dataBase");
@@ -21,6 +22,12 @@ connectDB();
 //* Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,PUT,POST,DELETE",
+  })
+);
 
 //* Public
 app.use(express.static("public"));
