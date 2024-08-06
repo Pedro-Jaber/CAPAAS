@@ -1,4 +1,5 @@
 :root {
+  /* LINK: https://coolors.co/0e0e10-ff6e1a-e0e1f3 */
   --cap-white: #e0e1f3;
   --cap-black: #0e0e10;
   --cap-orange: #ff6e1a;
@@ -151,6 +152,10 @@ label {
 
 .fs-8 {
   font-size: 0.5rem;
+}
+
+.header {
+  background-color: #14141a;
 }
 
 .home-banner {
