@@ -17,6 +17,7 @@ router
   .route("/post-capybara")
   .get(ctrllerCapybara.getToPostCapybara)
   .post(upload.single("image"), ctrllerCapybara.postCapybara);
+router.route("/gallery").get(ctrllerCapybara.getToGallery);
 router.route("/:id").get(ctrllerCapybara.getImageFromId);
 
 module.exports = router;

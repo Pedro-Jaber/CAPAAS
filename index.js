@@ -45,7 +45,20 @@ app.get(["/", "/home"], async (req, res) => {
   // console.log(data);
   // console.log(capcount);
 
-  res.status(200).render("home", { data, capcount });
+  secondaryButtonHref = "/capybara/post-capybara";
+  secondaryButtonTitle = "POST A CAPYBARA";
+
+  if (process.env.PRODUCTION) {
+    secondaryButtonHref = "/capybara/gallery";
+    secondaryButtonTitle = "GALLERY";
+  }
+
+  res.status(200).render("home", {
+    data,
+    capcount,
+    secondaryButtonHref,
+    secondaryButtonTitle,
+  });
 });
 
 app.use("/capybara", capybaraAPI);

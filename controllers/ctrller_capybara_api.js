@@ -105,6 +105,14 @@ module.exports.getToPostCapybara = async (req, res) => {
   res.status(200).render("postcapybara", { data });
 };
 
+module.exports.getToGallery = async (req, res) => {
+  const data = await Capybara.aggregate([{ $sort: { createdAt: -1 } }])
+    .limit(48)
+    .exec();
+
+  res.status(200).render("galery", { data });
+};
+
 module.exports.postCapybara = async (req, res) => {
   const tags_string = req.body.tags; // Get image tags to store in database
   const image = req.file; // Get image from request
