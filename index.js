@@ -5,6 +5,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 
 const { connectDB } = require("./model/dataBase");
+const Capybara = require("./model/model_capybara");
 
 //* Routers Imports
 const capybaraAPI = require("./routers/routers_capybara_api");
@@ -38,7 +39,6 @@ app.set("view engine", "ejs");
 app.set("layout", "layouts/main");
 
 //* Routes
-const Capybara = require("./model/model_capybara");
 app.get(["/", "/home"], async (req, res) => {
   const data = await Capybara.aggregate([{ $sample: { size: 4 } }]).exec();
   const capcount = await Capybara.countDocuments();
